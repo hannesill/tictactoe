@@ -1,6 +1,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import ConfettiExplosion from "vue-confetti-explosion"
 
 if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark')
@@ -85,6 +86,9 @@ const ResetGame = () => {
 
 <template>
     <main class="pt-8 text-center dark:bg-gray-800 min-h-screen dark:text-white">
+        <div class="fixed top-0 left-0 right-0 bottom-0 w-screen h-screen z-50 overflow-hidden pointer-events-none">
+            <ConfettiExplosion v-if="winner" :particleCount="300" :duration="2000" :stageWidth="3000" :stageHeight="1500" />
+        </div>
         <h1 class="mb-8 text-3xl font-bold- uppercase">Tic Tac Toe</h1>
         <div class="flex justify-center">
             <div class="w-64 flex justify-between">
